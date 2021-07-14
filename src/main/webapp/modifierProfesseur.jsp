@@ -5,7 +5,6 @@
     <%@ page import="beans.Professeur" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,49 +21,8 @@
 
         
 <div class="container">
+${professeur.toString() }
 <div class="row">
-<button type="button" class="btn btn-primary">Ajouter Professeur</button>
-</div>
-
-<div class="row">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Rérérence Professeur</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Prénom</th>
-      <th scope="col">Modifier</th>
-      <th scope="col">Supprimer</th>
-    </tr>
-  </thead>
-  <tbody>
-    <c:forEach items="${professeurs}" var="prof">
-		    <tr>
-		    <td>${prof.getRefProfesseur()}</td>
-		    <td>${prof.getNomProfesseur()}</td>
-		    <td>${prof.getPrenomProfesseur()}</td>
-		    <td><a href="/J2EE_PROJECT/modifierProfesseur?ref=${prof.getRefProfesseur()}"> Modifier </a></td>
-		    <td><a href="/J2EE_PROJECT/supprimerProfesseur?ref=${prof.getRefProfesseur()}"> Supprimer</a></td>
-  </tr>
-</c:forEach>
-  </tbody>
-</table>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-<table>
-
-</table>
-
 </div>
   
 

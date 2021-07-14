@@ -79,6 +79,28 @@ public class Professeur {
 	    db.connexion.close();
 	}
 	
+	
+	public static Professeur getProfesseur(String refProfesseur) throws ClassNotFoundException, SQLException {
+		DB db = new DB();
+		Professeur p = new Professeur();
+		String query = "SELECT * FROM phpmyadmin.professeur WHERE refProfesseur =  ? ;";
+		PreparedStatement ps = db.connexion.prepareStatement(query);
+		ps.setString(1, refProfesseur);
+		ResultSet rs = ps.executeQuery(); 
+		
+		while (rs.next()) { 
+			p.setRefProfesseur(rs.getString(1));
+			p.setNomProfesseur(rs.getString(2));
+			p.setPrenomProfesseur(rs.getString(3));
+		}
+		rs.close();
+		ps.close();
+		db.connexion.close();
+		return p;
+	}
+	
+	
+	
 	public static void modifierProfesseur(String refProfesseur , Professeur newProf) throws SQLException, ClassNotFoundException {
 		DB db = new DB();
 		String query = "UPDATE `phpmyadmin`.`professeur` SET `refProfesseur` = ?, `nom` = ?, `prenom` = ? WHERE (`refProfesseur` = ?);";
