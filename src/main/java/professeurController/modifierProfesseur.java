@@ -1,27 +1,27 @@
+package professeurController;
 
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import beans.Professeur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import beans.Filiere;
-import beans.Professeur;
+
 /**
- * Servlet implementation class test
+ * Servlet implementation class modifierProfesseur
  */
-@WebServlet("/test")
-public class test extends HttpServlet {
+@WebServlet("/modifierProfesseur")
+public class modifierProfesseur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public test() {
+    public modifierProfesseur() {
         // TODO Auto-generated constructor stub
     }
 
@@ -29,29 +29,22 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// TODO Auto-generated method stub
+		String ref = request.getParameter("ref");
+		Professeur p = new Professeur();
+		try {
+			p = Professeur.getProfesseur(ref);
+			System.out.println(p.toString());
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
-		
-			try {
-				
-				Filiere.supprimerFilierer("2");
-				
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-		
-		
+		request.setAttribute( "professeur", p);
+		this.getServletContext().getRequestDispatcher( "/Professeur/modifierProfesseur.jsp" ).forward( request, response );
 		
 	}
-	
-	
-	
-	
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

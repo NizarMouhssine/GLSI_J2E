@@ -135,7 +135,14 @@ public class Professeur {
 	}
 
 
-
+	public static ArrayList<String> getProfesseursNoms() throws ClassNotFoundException, SQLException {
+		ArrayList<Professeur> listeProfesseurs = getProfesseurs();
+		ArrayList<String> noms = new ArrayList<String>();
+		for(Professeur p : listeProfesseurs) {
+			noms.add(p.getNomProfesseur());
+		}
+	return noms;
+	}
 
 	@Override
 	public String toString() {

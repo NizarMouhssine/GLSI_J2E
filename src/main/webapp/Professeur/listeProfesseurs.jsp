@@ -18,13 +18,12 @@
 <title>Projet Scolarité </title>
 </head>
 <body>
-<%@ include file="barre_navigation.jsp" %>
+<%@ include file="../barre_navigation.jsp" %>
 
         
 <div class="container">
 <div class="row">
-<button type="button" class="btn btn-primary">Ajouter Professeur</button>
-</div>
+<a class="btn btn-primary" href="/J2EE_PROJECT/Professeur/ajouterProfesseur.jsp"> Ajouter Professeur</a></div>
 
 <div class="row">
 <table class="table">

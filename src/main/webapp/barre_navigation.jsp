@@ -9,18 +9,9 @@
         <a class="nav-link" href="#">Gestion Etudiants</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="professeurs.jsp">Gestion Professeurs</a>
+        <a class="nav-link" href="/J2EE_PROJECT/listeProfesseurs">Gestion Professeurs</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+     
     </ul>
   </div>
 </nav>

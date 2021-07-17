@@ -1,8 +1,9 @@
+package professeurController;
 
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import beans.Professeur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,16 +12,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class listeProfesseurs
+ * Servlet implementation class ajouterProfesseur
  */
-@WebServlet("/listeProfesseurs")
-public class listeProfesseurs extends HttpServlet {
+@WebServlet("/ajouterProfesseur")
+public class ajouterProfesseur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public listeProfesseurs() {
+    public ajouterProfesseur() {
         // TODO Auto-generated constructor stub
     }
 
@@ -30,22 +31,6 @@ public class listeProfesseurs extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		ArrayList<Professeur> professeurs = null;
-		try {
-			professeurs = Professeur.getProfesseurs();
-			for (Professeur p : professeurs) {
-				response.getWriter().println(p.toString());
-				
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute( "professeurs", professeurs);
-		this.getServletContext().getRequestDispatcher( "/listeProfesseurs.jsp" ).forward( request, response );
 	}
 
 	/**
@@ -53,7 +38,29 @@ public class listeProfesseurs extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		Professeur p = new Professeur();
+		p.setRefProfesseur(request.getParameter("refProfesseur"));
+		p.setNomProfesseur(request.getParameter("nomProfesseur"));
+		p.setPrenomProfesseur(request.getParameter("prenomProfesseur"));
+		
+		
+		
+		
+				try {
+					p.ajoutProfesseur();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					request.setAttribute( "messageErreur", "Impossible d'ajouter le professeur " + p.getNomProfesseur() + " , Détails : " + e.getMessage());
+					this.getServletContext().getRequestDispatcher( "/pageErreur.jsp" ).forward( request, response );
+
+				}
+			
+	
+		this.getServletContext().getRequestDispatcher( "/listeProfesseurs" ).forward( request, response );
 	}
 
 }

@@ -1,27 +1,27 @@
+package professeurController;
 
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import beans.Professeur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import beans.Filiere;
-import beans.Professeur;
+
 /**
- * Servlet implementation class test
+ * Servlet implementation class enregistrerModifProfesseur
  */
-@WebServlet("/test")
-public class test extends HttpServlet {
+@WebServlet("/enregistrerModifProfesseur")
+public class enregistrerModifProfesseur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public test() {
+    public enregistrerModifProfesseur() {
         // TODO Auto-generated constructor stub
     }
 
@@ -29,36 +29,32 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		
-		
-			try {
-				
-				Filiere.supprimerFilierer("2");
-				
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-		
-		
+		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
-	
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		Professeur p = new Professeur();
+		p.setRefProfesseur(request.getParameter("refProfesseur"));
+		p.setNomProfesseur(request.getParameter("nomProfesseur"));
+		p.setPrenomProfesseur(request.getParameter("prenomProfesseur"));
+		
+		String refProf = request.getParameter("refProfesseur");
+		try {
+			Professeur.modifierProfesseur(refProf,p);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.getServletContext().getRequestDispatcher( "/listeProfesseurs" ).forward( request, response );
+		
+		
 	}
 
 }
